@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Clicker Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌸 Flower Clicker 🌸</h1>
+            <p class="tagline">Click flowers to earn petals!</p>
+        </header>
+
+        <div class="stats">
+            <div class="stat-box">
+                <span class="stat-label">Petals:</span>
+                <span class="stat-value" id="petals">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Clicks/sec:</span>
+                <span class="stat-value" id="cps">0</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-label">Total Clicks:</span>
+                <span class="stat-value" id="totalClicks">0</span>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <button id="flower" class="flower-button">
+                <span class="flower-emoji">🌼</span>
+            </button>
+            <p class="click-feedback" id="clickFeedback"></p>
+        </div>
+
+        <div class="upgrades-section">
+            <h2>Upgrades</h2>
+            <div class="upgrades-grid">
+                <div class="upgrade-card" id="upgrade1">
+                    <div class="upgrade-emoji">👆</div>
+                    <div class="upgrade-name">Click Power</div>
+                    <div class="upgrade-desc">+1 petal per click</div>
+                    <div class="upgrade-cost">Cost: <span class="cost">10</span> petals</div>
+                    <button class="upgrade-btn" data-upgrade="clickPower">Buy</button>
+                    <div class="upgrade-count" id="clickPowerCount">0</div>
+                </div>
+
+                <div class="upgrade-card" id="upgrade2">
+                    <div class="upgrade-emoji">🌱</div>
+                    <div class="upgrade-name">Auto Grower</div>
+                    <div class="upgrade-desc">+1 petal per second</div>
+                    <div class="upgrade-cost">Cost: <span class="cost">50</span> petals</div>
+                    <button class="upgrade-btn" data-upgrade="autoGrower">Buy</button>
+                    <div class="upgrade-count" id="autoGrowerCount">0</div>
+                </div>
+
+                <div class="upgrade-card" id="upgrade3">
+                    <div class="upgrade-emoji">🐝</div>
+                    <div class="upgrade-name">Pollinator</div>
+                    <div class="upgrade-desc">+3 petals per second</div>
+                    <div class="upgrade-cost">Cost: <span class="cost">200</span> petals</div>
+                    <button class="upgrade-btn" data-upgrade="pollinator">Buy</button>
+                    <div class="upgrade-count" id="pollinatorCount">0</div>
+                </div>
+
+                <div class="upgrade-card" id="upgrade4">
+                    <div class="upgrade-emoji">☀️</div>
+                    <div class="upgrade-name">Sunny Days</div>
+                    <div class="upgrade-desc">+5 petals per second</div>
+                    <div class="upgrade-cost">Cost: <span class="cost">500</span> petals</div>
+                    <button class="upgrade-btn" data-upgrade="sunnyDays">Buy</button>
+                    <div class="upgrade-count" id="sunnyDaysCount">0</div>
+                </div>
+
+                <div class="upgrade-card" id="upgrade5">
+                    <div class="upgrade-emoji">🌈</div>
+                    <div class="upgrade-name">Rainbow Garden</div>
+                    <div class="upgrade-desc">+10 petals per second</div>
+                    <div class="upgrade-cost">Cost: <span class="cost">1000</span> petals</div>
+                    <button class="upgrade-btn" data-upgrade="rainbowGarden">Buy</button>
+                    <div class="upgrade-count" id="rainbowGardenCount">0</div>
+                </div>
+
+                <div class="upgrade-card" id="upgrade6">
+                    <div class="upgrade-emoji">🌺</div>
+                    <div class="upgrade-name">Flower Multiplier</div>
+                    <div class="upgrade-desc">x2 all production</div>
+                    <div class="upgrade-cost">Cost: <span class="cost">2500</span> petals</div>
+                    <button class="upgrade-btn" data-upgrade="flowerMultiplier">Buy</button>
+                    <div class="upgrade-count" id="flowerMultiplierCount">0</div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <button id="reset" class="reset-btn">Reset Game</button>
+            <p id="playtime" class="playtime">Time played: 0s</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
