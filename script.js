@@ -31,6 +31,9 @@ const upgradeProduction = {
     rainbowGarden: 10
 };
 
+// Particle emojis for cute effect
+const particleEmojis = ['✨', '💖', '🌸', '💕', '⭐', '🌟'];
+
 // DOM Elements
 const flowerButton = document.getElementById('flower');
 const petalsDisplay = document.getElementById('petals');
@@ -59,6 +62,52 @@ function saveGame() {
     localStorage.setItem('flowerClickerSave', JSON.stringify(save));
 }
 
+// Create Particle Effect
+function createParticles(x, y, count = 5) {
+    for (let i = 0; i < count; i++) {
+        const particle = document.createElement('div');
+        particle.textContent = particleEmojis[Math.floor(Math.random() * particleEmojis.length)];
+        particle.style.position = 'fixed';
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        particle.style.fontSize = '24px';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '1000';
+        
+        const angle = (Math.PI * 2 * i) / count;
+        const velocity = 4 + Math.random() * 3;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity - 2;
+        
+        document.body.appendChild(particle);
+        
+        let posX = x;
+        let posY = y;
+        let velX = vx;
+        let velY = vy;
+        let life = 1;
+        
+        const animate = () => {
+            posX += velX;
+            posY += velY;
+            velY += 0.1; // gravity
+            life -= 0.02;
+            
+            particle.style.left = posX + 'px';
+            particle.style.top = posY + 'px';
+            particle.style.opacity = life;
+            
+            if (life > 0) {
+                requestAnimationFrame(animate);
+            } else {
+                document.body.removeChild(particle);
+            }
+        };
+        
+        animate();
+    }
+}
+
 // Click Flower
 function clickFlower() {
     const gain = gameState.clickPower * gameState.multiplier;
@@ -68,6 +117,10 @@ function clickFlower() {
     // Visual feedback
     showClickFeedback(`+${gain}`);
     animateFlower();
+    
+    // Create cute particle effect
+    const rect = flowerButton.getBoundingClientRect();
+    createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 6);
     
     updateDisplay();
     saveGame();
@@ -79,17 +132,23 @@ function showClickFeedback(text) {
     feedback.textContent = text;
     feedback.style.animation = 'none';
     setTimeout(() => {
-        feedback.style.animation = 'floatUp 1s ease-out forwards';
+        feedback.style.animation = 'floatUpCute 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
     }, 10);
 }
 
-// Animate Flower
+// Animate Flower with more bounce
 function animateFlower() {
     const flower = flowerButton.querySelector('.flower-emoji');
-    flower.style.transform = 'scale(0.9) rotate(-5deg)';
+    flower.style.animation = 'none';
     setTimeout(() => {
-        flower.style.transform = 'scale(1) rotate(0deg)';
-    }, 100);
+        flower.style.transform = 'scale(0.85) rotate(-8deg)';
+        setTimeout(() => {
+            flower.style.transform = 'scale(1) rotate(0deg)';
+            setTimeout(() => {
+                flower.style.animation = 'floatBounce 3s ease-in-out infinite';
+            }, 50);
+        }, 80);
+    }, 10);
 }
 
 // Buy Upgrade
@@ -115,6 +174,11 @@ function buyUpgrade(upgradeType) {
             gameState.multiplier *= 2;
         }
         
+        // Create celebration particles
+        const upgradeCard = document.querySelector(`[data-upgrade="${upgradeType}"]`).closest('.upgrade-card');
+        const rect = upgradeCard.getBoundingClientRect();
+        createParticles(rect.left + rect.width / 2, rect.top + rect.height / 2, 8);
+        
         updateDisplay();
         saveGame();
     } else {
@@ -122,13 +186,21 @@ function buyUpgrade(upgradeType) {
     }
 }
 
-// Show Not Enough Petals Message
+// Show Not Enough Petals Message with cute shake
 function showNotEnoughPetals() {
     const flower = flowerButton.querySelector('.flower-emoji');
-    flower.style.opacity = '0.5';
+    flower.style.animation = 'none';
+    
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            flower.style.transform = i % 2 === 0 ? 'translateX(-10px)' : 'translateX(10px)';
+        }, i * 100);
+    }
+    
     setTimeout(() => {
-        flower.style.opacity = '1';
-    }, 200);
+        flower.style.transform = 'translateX(0)';
+        flower.style.animation = 'floatBounce 3s ease-in-out infinite';
+    }, 300);
 }
 
 // Calculate Petals Per Second
@@ -187,7 +259,7 @@ function updatePlaytime() {
     const minutes = Math.floor((elapsed % 3600) / 60);
     const seconds = elapsed % 60;
     
-    let timeStr = 'Time played: ';
+    let timeStr = '⏱️ Time played: ';
     if (hours > 0) timeStr += `${hours}h `;
     if (minutes > 0) timeStr += `${minutes}m `;
     timeStr += `${seconds}s`;
@@ -197,7 +269,7 @@ function updatePlaytime() {
 
 // Reset Game
 function resetGame() {
-    if (confirm('Are you sure you want to reset your progress?')) {
+    if (confirm('Are you sure you want to reset your progress? 😢')) {
         localStorage.removeItem('flowerClickerSave');
         location.reload();
     }
