@@ -5,7 +5,7 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
@@ -33,12 +33,14 @@ header h1 {
     color: #667eea;
     margin-bottom: 10px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .tagline {
     font-size: 1.2em;
     color: #666;
     font-style: italic;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .stats {
@@ -62,6 +64,7 @@ header h1 {
     font-size: 0.9em;
     opacity: 0.9;
     margin-bottom: 5px;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .stat-value {
@@ -111,6 +114,7 @@ header h1 {
     pointer-events: none;
     opacity: 0;
     animation: floatUp 1s ease-out forwards;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 @keyframes floatUp {
@@ -133,6 +137,7 @@ header h1 {
     color: #667eea;
     margin-bottom: 20px;
     font-size: 1.8em;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .upgrades-grid {
@@ -172,12 +177,14 @@ header h1 {
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .upgrade-desc {
     font-size: 0.85em;
     color: #666;
     margin-bottom: 10px;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .upgrade-cost {
@@ -185,6 +192,7 @@ header h1 {
     color: #667eea;
     font-weight: bold;
     margin-bottom: 10px;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .upgrade-btn {
@@ -198,6 +206,7 @@ header h1 {
     transition: all 0.3s ease;
     width: 100%;
     margin-bottom: 10px;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .upgrade-btn:hover:not(:disabled) {
@@ -214,6 +223,7 @@ header h1 {
     font-size: 0.9em;
     color: #999;
     font-style: italic;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 footer {
@@ -233,6 +243,7 @@ footer {
     font-weight: bold;
     transition: all 0.3s ease;
     margin-bottom: 15px;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 .reset-btn:hover {
@@ -243,6 +254,7 @@ footer {
 .playtime {
     color: #999;
     font-size: 0.9em;
+    font-family: 'Brush Script MT', 'Lucida Handwriting', cursive;
 }
 
 @media (max-width: 600px) {
